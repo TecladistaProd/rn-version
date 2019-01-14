@@ -1,6 +1,6 @@
 {
   "name": "rn-version",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Versioning react-native apps and npm at the same time",
   "main": "app.js",
   "bin": {
