@@ -1,0 +1,26 @@
+{
+  "name": "rn-version",
+  "version": "1.0.0",
+  "description": "Versioning react-native apps and npm at the same time",
+  "main": "app.js",
+  "bin": {
+    "rn-version": "bin/outside"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "keywords": [
+    "react-native",
+    "javascript",
+    "java"
+  ],
+  "author": "TecladistaProd",
+  "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
+}

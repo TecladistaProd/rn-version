@@ -1,0 +1,10 @@
+import groovy.json.JsonSlurper
+
+def getVersion(rnVersion) {
+    def inputFile = new File("../package.json")
+    def packageJson = new JsonSlurper().parseText(inputFile.text)
+    return packageJson[rnVersion]
+}
+
+def googleVer = getVersion("rnVersionCode")
+def userVer = getVersion("version")
