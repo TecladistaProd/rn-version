@@ -5,3 +5,5 @@ This Module is used to versioning App created with React-Native and versioning p
 	--version-code or -V give the new version code passed to code (this should be a integer number and should be greater than the last, or you can pass + to add +1 to last value)
 	--help or -h is help command
 	--automatized or -a this command execute automatically the first 3 commands and increment the versions automatically, but version name will be increased directly by 1
+
+If you have any other doubt please access this link: https://github.com/TecladistaProd/rn-version

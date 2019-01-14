@@ -32,9 +32,9 @@ to automatized version, just try
 
 `--implementation or -i` This command will implement the necessary code to the module work in your react-native project
 
-`--version-code or -V` this command will replace your version code. This version should be an integer and always greater than the last, but if you want just pass + symbol, the new version will be the last version + 1
+`--version-code or -V` this command will replace your version code. This version should be an integer and always greater than the last, but if you want just pass + symbol, the new version will be the last version + 1. This code should be used with the code below.
 
-`--version-name or -v` this command will replace your version name. this can be like this '2.1.1' or  '1.0.1-alpha'
+`--version-name or -v` this command will replace your version name. this can be like this '2.1.1' or  '1.0.1-alpha'. This code should be used with the code above.
 
 `--automatized or -a` this command will replace version name and version code at the same time, version code will be the last version + 1, and version name will be the last version + 1
 
