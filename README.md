@@ -47,3 +47,5 @@ rn-version -i
 
 rn-version -V 2 -v 1.1.1
 ```
+
+> This module only work with android yet. For Ios will be implemented, please wait.
