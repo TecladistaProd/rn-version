@@ -1,3 +1,4 @@
+const fs = require('fs')
 const minimist = require('minimist')
 const implementation = require('./src/implementation')
 const versioning = require('./src/versioning')
@@ -15,7 +16,7 @@ module.exports = () => {
 		}
 
 		if(('h' in args || 'help' in args) && (args.h || args['help'])){
-			console.log(fs.fs.readFileSync(__dirname+'/src/help.txt').toString())
+			console.log(fs.readFileSync(__dirname+'/src/help.txt').toString())
 		}
 
 		if(
