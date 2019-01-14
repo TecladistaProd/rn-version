@@ -28,9 +28,11 @@ module.exports = () => {
 			if(!a1 || !a2){
 				return console.log("Be right you are passing the 2 required arguments to versioning app")
 			}
-			a2 = a2.toString()
-			if(a2.indexOf(/./) < 0){
-				a2 = a2 + '.0.0'
+			if(typeof a2 === 'number'){
+				a2 = a2.toString()
+				if(a2.indexOf(/./) < 0){
+					a2 = a2 + '.0.0'
+				}
 			}
 			versioning(a1, a2)
 		}
