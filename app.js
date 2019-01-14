@@ -30,7 +30,7 @@ module.exports = () => {
 			}
 			a2 = a2.toString()
 			if(a2.indexOf(/./) < 0){
-				a2 = a2 + '.0'
+				a2 = a2 + '.0.0'
 			}
 			versioning(a1, a2)
 		}
