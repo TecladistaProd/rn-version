@@ -29,7 +29,6 @@ module.exports = () => {
 			if(!a1 || !a2){
 				return console.log("Be right you are passing the 2 required arguments to versioning app")
 			}
-			console.log(typeof a2)
 			if(typeof a2 === 'number'){
 				console.log(typeof a2)
 				a2 = a2.toString()
@@ -37,7 +36,7 @@ module.exports = () => {
 					a2 = a2 + '.0.0'
 				}
 			}
-			// versioning(a1, a2)
+			versioning(a1, a2)
 		}
 
 		if(('a' in args || 'automatized' in args) && (args.a || args['automatized'])){
