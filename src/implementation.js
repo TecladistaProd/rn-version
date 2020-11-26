@@ -27,11 +27,11 @@ module.exports = () => {
 
 	let changes = fs.readFileSync(__dirname+'/gradleReplace.txt').toString().split(/\r\n/)
 
-	gradle = toChange(file, changes)
+	gradle = toChange(gradle, changes)
 
 	fs.writeFileSync('./android/app/build.gradle', gradle)
 	fs.writeFileSync('./android/app/build.gradle.bkp', bkpGradle)
-	
+
 	let pkg = JSON.parse(fs.readFileSync('./package.json'))
 	if(!('rnVersionCode' in pkg)){
 		pkg['rnVersionCode'] = 1
