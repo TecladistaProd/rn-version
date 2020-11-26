@@ -1,17 +1,17 @@
 const fs = require('fs');
 
 const toChange = (file, changes) => {
-	const index = file.findIndex(i => i === 'apply plugin: "com.android.application"')
+	const index = file.findIndex(i => i.match('import com.android.build.OutputFile'))
 	if(index > -1){
-		file.splice(index, 0, ...changes)
+		file = [...file.slice(0, index+1), ...changes, ...file.slice(index+1, file.length)]
 	}
 	const vCIndex = file.findIndex(i => i.match('versionCode '))
 	const vNIndex = file.findIndex(i => i.match('versionName '))
 	if(vCIndex > -1) {
-		file.splice(vCIndex, 1, 'versionCode googleVer')
+		file[vCIndex] = file[vCIndex].replace(/versionCode.+/, 'versionCode googleVer')
 	}
 	if(vNIndex > -1) {
-		file.splice(vCIndex, 1, 'versionName userVer')
+		file[vNIndex] = file[vNIndex].replace(/versionName.+/, 'versionName userVer')
 	}
 	return file
 }
@@ -21,7 +21,7 @@ const toChange = (file, changes) => {
 module.exports = () => {
 	let gradle = fs.readFileSync('./android/app/build.gradle')
 		.toString()
-		.split(/\r\n/)
+		.split(/\n/g)
 
 	const bkpGradle = gradle.join('\r\n')
 
