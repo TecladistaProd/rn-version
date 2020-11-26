@@ -1,16 +1,16 @@
 const fs = require('fs');
 
 const toChange = (file, changes) => {
-	const index = file.findIndex(i => i === 'import com.android.build.OutputFile')
+	const index = file.findIndex(i => i === 'apply plugin: "com.android.application"')
 	if(index > -1){
 		file.splice(index, 0, ...changes)
 	}
 	const vCIndex = file.findIndex(i => i.match('versionCode '))
 	const vNIndex = file.findIndex(i => i.match('versionName '))
-	if(vCIndex) {
+	if(vCIndex > -1) {
 		file.splice(vCIndex, 1, 'versionCode googleVer')
 	}
-	if(vNIndex) {
+	if(vNIndex > -1) {
 		file.splice(vCIndex, 1, 'versionName userVer')
 	}
 	return file
