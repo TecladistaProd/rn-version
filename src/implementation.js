@@ -29,7 +29,7 @@ module.exports = () => {
 
 	gradle = toChange(gradle, changes)
 
-	fs.writeFileSync('./android/app/build.gradle', gradle)
+	fs.writeFileSync('./android/app/build.gradle', gradle.join('\r\n'))
 	fs.writeFileSync('./android/app/build.gradle.bkp', bkpGradle)
 
 	let pkg = JSON.parse(fs.readFileSync('./package.json'))
