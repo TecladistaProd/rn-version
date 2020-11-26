@@ -1,29 +1,37 @@
-const fs = require('fs')
+const fs = require('fs');
+
+const toChange = (file, changes) => {
+	const index = file.findIndex(i => i === 'import com.android.build.OutputFile')
+	if(index > -1){
+		file.splice(index, 0, ...changes)
+	}
+	const vCIndex = file.findIndex(i => i.match('versionCode '))
+	const vNIndex = file.findIndex(i => i.match('versionName '))
+	if(vCIndex) {
+		file.splice(vCIndex, 1, 'versionCode googleVer')
+	}
+	if(vNIndex) {
+		file.splice(vCIndex, 1, 'versionName userVer')
+	}
+	return file
+}
+
+
+
 module.exports = () => {
 	let gradle = fs.readFileSync('./android/app/build.gradle')
 		.toString()
 		.split(/\r\n/)
 
+	const bkpGradle = gradle.join('\r\n')
+
 	let changes = fs.readFileSync(__dirname+'/gradleReplace.txt').toString().split(/\r\n/)
 
-	for(let line in gradle){
-		if(gradle[line].match(/rnVersion/g) && changes.length > 0){
-			changes = []
-		}
-		if(gradle[line].match('versionCode ')){
-			let split = gradle[line].split('versionCode ')
-			split[split.length-1] = 'googleVer'
-			gradle[line] = split.join('versionCode ')
-		} else if(gradle[line].match('versionName ')){
-			let split = gradle[line].split('versionName ')
-			split[split.length-1] = 'userVer'
-			gradle[line] = split.join('versionName ')
-		}
-	}
-
-	gradle = [...gradle.slice(0, 4), ...changes, ...gradle.slice(4, 10000)].join('\r\n')
+	gradle = toChange(file, changes)
 
 	fs.writeFileSync('./android/app/build.gradle', gradle)
+	fs.writeFileSync('./android/app/build.gradle.bkp', bkpGradle)
+	
 	let pkg = JSON.parse(fs.readFileSync('./package.json'))
 	if(!('rnVersionCode' in pkg)){
 		pkg['rnVersionCode'] = 1
